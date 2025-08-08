@@ -1,6 +1,5 @@
 import hashlib
-import math
-import bitarray  # Потрібно встановити: pip install bitarray
+import bitarray
 
 
 class BloomFilter:
@@ -13,7 +12,6 @@ class BloomFilter:
     def _hashes(self, item: str):
         item = item.encode('utf-8')
         for i in range(self.num_hashes):
-            # Створення хешів на основі hashlib + соль
             hash_digest = hashlib.sha256(item + str(i).encode('utf-8')).hexdigest()
             yield int(hash_digest, 16) % self.size
 
